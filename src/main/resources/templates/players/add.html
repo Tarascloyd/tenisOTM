@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Tennis manager</title>
+		<link rel="stylesheet" th:href="@{/styles.css}" />
+	</head>
+	
+	<body>
+	
+		<h3>Player Directory</h3>
+		<hr>
+		
+		
+		<form method="POST" th:action="@{/players/save}" th:object="${player}">
+			<h1>Add player to your team</h1>
+			<div th:if="${#fields.hasErrors()}">
+				<span class="validationError">
+					Please correct the problems below and resubmit.
+				</span>
+			</div>
+			<h3>Add new player with ...</h3>
+			<input type="hidden" th:field="*{id}" />
+			
+			<label for="name">Name: </label>
+			<input type="text" th:field="*{name}" placeholder="Name"/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">Name error</span>
+			<br/>
+			
+			<label for="age">Age: </label>
+			<input type="number" th:field="*{age}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('age')}"
+				th:errors="*{age}">Age error</span>
+			<br/>
+			
+			<label for="skill">Skill(10-99): </label>
+			<input type="number" th:field="*{skill}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('skill')}"
+				th:errors="*{skill}">Skill error</span>
+			<br/>
+			
+			<input type="submit" value="Submit player"/>
+		</form>
+		
+		<hr>
+		<a th:href="@{/players/list}">Back to Players List</a>
+	</body>
+</html>
