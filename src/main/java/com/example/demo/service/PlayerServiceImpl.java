@@ -21,7 +21,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	public List<Player> findAll() {
-		return (List<Player>) playerRepository.findAllByOrderBySkillDesc();
+		return (List<Player>) playerRepository.findAll();
 	}
 
 	@Override

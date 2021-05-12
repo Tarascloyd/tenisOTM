@@ -10,10 +10,7 @@ import com.example.demo.player.Player;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
-	List<Player> findAllByOrderBySkillDesc();
-	
 	List<Player> findByNameContainsAllIgnoreCase(String theName);
 	
-	List<Player> findBySkillBetween(int startSkill, int endSkill);
 
 }

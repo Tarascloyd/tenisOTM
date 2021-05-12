@@ -1,25 +1,69 @@
 package com.example.demo.player;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class PlayersAbility {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid power")
+	@Max(value = 99, message="Invalid power")
 	private int power;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid speed")
+	@Max(value = 99, message="Invalid speed")
 	private int speed;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid skill")
+	@Max(value = 99, message="Invalid skill")
 	private int skill;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid skill")
+	@Max(value = 99, message="Invalid skill")
 	private int skillOnGrass;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid skill")
+	@Max(value = 99, message="Invalid skill")
 	private int skillOnHard;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid skill")
+	@Max(value = 99, message="Invalid skill")
 	private int skillOnClay;
+	
+	@NotNull
+	@Min(value = 10, message="Invalid skill")
+	@Max(value = 99, message="Invalid skill")
 	private int skillIndoor;
-	private int averageSkillByCourt;
-	public PlayersAbility(int power, int speed, int skill, int skillOnGrass, int skillOnHard, int skillOnClay,
-			int skillIndoor) {
-		this.power = power;
-		this.speed = speed;
-		this.skill = skill;
-		this.skillOnGrass = skillOnGrass;
-		this.skillOnHard = skillOnHard;
-		this.skillOnClay = skillOnClay;
-		this.skillIndoor = skillIndoor;
-		this.averageSkillByCourt = (skillOnGrass + skillOnHard + skillOnClay + skillIndoor) / 4;
+	
+	
+	public PlayersAbility() {
 		
+	}
+	
+	public int getLevel() {
+		return (power + speed + skill + (skillOnGrass + skillOnHard + skillOnClay + skillIndoor)/4)/4;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getPower() {
 		return power;
@@ -62,8 +106,5 @@ public class PlayersAbility {
 	}
 	public void setSkillIndoor() {
 		this.skillIndoor++;
-	}
-	public int getAverageSkillByCourt() {
-		return averageSkillByCourt;
 	}
 }

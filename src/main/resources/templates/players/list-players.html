@@ -15,6 +15,7 @@
 <div class="container">
 
 	<h3>Player Directory</h3>
+	<a th:href="@{/}">Back to Home</a>
 	<hr>
 	
 	<!-- Add a search form -->
@@ -43,7 +44,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
-				<th>Skill</th>
+				<th>Level</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -53,7 +54,7 @@
 			
 				<td th:text="${tempPlayer.name}" />	
 				<td th:text="${tempPlayer.age}" />	
-				<td th:text="${tempPlayer.skill}" />	
+				<td th:text="${tempPlayer.playersAbility.getLevel()}" />	
 				
 				<td>
 					<!-- Add "update" button/link -->

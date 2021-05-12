@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -25,24 +26,14 @@ public class Player {
 	private int age;
 	
 	
-	@NotNull
-	@Min(value = 10, message="Invalid skill")
-	@Max(value = 99, message="Invalid skill")
-	private int skill;
+	@OneToOne
+	private PlayersAbility playersAbility;
+
+	@OneToOne
+	private PlayersStat playersStat;
 
 	public Player() {
 		
-	}
-	public Player(int id, String name, int age, int skill) {
-		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.skill = skill;
-	}
-	public Player(String name, int age, int skill) {
-		this.name = name;
-		this.age = age;
-		this.skill = skill;
 	}
 
 	public int getId() {
@@ -69,12 +60,20 @@ public class Player {
 		this.age = age;
 	}
 
-	public int getSkill() {
-		return skill;
+	public PlayersAbility getPlayersAbility() {
+		return playersAbility;
 	}
 
-	public void setSkill(int skill) {
-		this.skill = skill;
+	public void setPlayersAbility(PlayersAbility playersAbility) {
+		this.playersAbility = playersAbility;
+	}
+
+	public PlayersStat getPlayersStat() {
+		return playersStat;
+	}
+
+	public void setPlayersStat(PlayersStat playersStat) {
+		this.playersStat = playersStat;
 	}
 	
 	

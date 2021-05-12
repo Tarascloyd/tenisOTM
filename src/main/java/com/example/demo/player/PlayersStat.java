@@ -1,62 +1,99 @@
 package com.example.demo.player;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class PlayersStat {
-	private int points;
-	private int totalWins;
-	private int totalLoses;
-	private int totalTitles;
-	private float ELORating;
-	private float maxELO;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
+	private int points = 0;
+	private int totalWins = 0;
+	private int totalLoses = 0;
+	private int totalTitles = 0;
+	private float ELORating = 1000;
+	private float maxELO = 0;
 	private int seeding = 0;
-	public PlayersStat(int points, int totalWins, int totalLoses, int totalTitles, float ELORating, float maxELO) {
-		super();
-		this.points = points;
-		this.totalWins = totalWins;
-		this.totalLoses = totalLoses;
-		this.totalTitles = totalTitles;
-		this.ELORating = ELORating;
-		this.maxELO = maxELO;
+	
+	
+	public PlayersStat() {
+		
 	}
+
+
 	public int getPoints() {
 		return points;
 	}
+
+
 	public void setPoints(int points) {
-		this.points += points;
+		this.points = points;
 	}
+
+
 	public int getTotalWins() {
 		return totalWins;
 	}
-	public void setTotalWins() {
-		this.totalWins ++;
+
+
+	public void setTotalWins(int totalWins) {
+		this.totalWins = totalWins;
 	}
+
+
 	public int getTotalLoses() {
 		return totalLoses;
 	}
-	public void setTotalLoses() {
-		this.totalLoses ++;
+
+
+	public void setTotalLoses(int totalLoses) {
+		this.totalLoses = totalLoses;
 	}
+
+
 	public int getTotalTitles() {
 		return totalTitles;
 	}
-	public void setTotalTitles() {
-		this.totalTitles ++;
+
+
+	public void setTotalTitles(int totalTitles) {
+		this.totalTitles = totalTitles;
 	}
+
+
 	public float getELORating() {
 		return ELORating;
 	}
-	public void setELORating(float ELORating) {
-		this.ELORating += ELORating;
-		if (this.ELORating > this.maxELO) this.maxELO=this.ELORating;
-	    if (this.ELORating<100) this.ELORating=100;
+
+
+	public void setELORating(float eLORating) {
+		ELORating = eLORating;
 	}
+
+
 	public float getMaxELO() {
 		return maxELO;
 	}
+
+
+	public void setMaxELO(float maxELO) {
+		this.maxELO = maxELO;
+	}
+
+
 	public int getSeeding() {
 		return seeding;
 	}
+
+
 	public void setSeeding(int seeding) {
 		this.seeding = seeding;
 	}
+	
 	
 }

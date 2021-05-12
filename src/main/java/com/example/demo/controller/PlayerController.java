@@ -14,18 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.player.Player;
+import com.example.demo.player.PlayersAbility;
+import com.example.demo.player.PlayersStat;
 import com.example.demo.service.PlayerService;
+import com.example.demo.service.PlayersAbilityService;
 
 @Controller
 @RequestMapping("/players")
 public class PlayerController {
 	
 	private PlayerService playerService;
+	private PlayersAbilityService playersAbilityService;
 	
-	public PlayerController(PlayerService thePlayerService) {
-		playerService = thePlayerService;
+		
+	public PlayerController(PlayerService playerService, PlayersAbilityService playersAbilityService) {
+		this.playerService = playerService;
+		this.playersAbilityService = playersAbilityService;
 	}
-	
+
 	@GetMapping("/list")
 	public String listPlayers(Model theModel) {
 		
@@ -40,7 +46,10 @@ public class PlayerController {
 		
 	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("player", new Player());
+		Player thePlayer = new Player();
+		thePlayer.setPlayersAbility(new PlayersAbility());
+		thePlayer.setPlayersStat(new PlayersStat());
+		model.addAttribute("player", thePlayer);
 		return "players/add";
 	}
 	
@@ -68,6 +77,8 @@ public class PlayerController {
 		}
 		else {		
 			// save the player
+			System.out.println(thePlayer.getPlayersAbility().getPower());
+			playersAbilityService.save(thePlayer.getPlayersAbility());
 			playerService.save(thePlayer);
 			
 			// use a redirect to prevent duplicate submissions

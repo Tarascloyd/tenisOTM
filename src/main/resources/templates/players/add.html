@@ -36,13 +36,54 @@
 				th:errors="*{age}">Age error</span>
 			<br/>
 			
-			<label for="skill">Skill(10-99): </label>
-			<input type="number" th:field="*{skill}" placeholder=20/>
+			<label for="power">Power(10-99): </label>
+			<input type="number" th:field="*{playersAbility.power}" placeholder=20/>
 			<span class="validationError"
-				th:if="${#fields.hasErrors('skill')}"
-				th:errors="*{skill}">Skill error</span>
+				th:if="${#fields.hasErrors('playersAbility.power')}"
+				th:errors="*{playersAbility.power}">Power error</span>
 			<br/>
 			
+			<label for="speed">Speed(10-99): </label>
+			<input type="number" th:field="*{playersAbility.speed}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.speed')}"
+				th:errors="*{playersAbility.speed}">Speed error</span>
+			<br/>
+			
+			<label for="skill">Skill(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skill}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.skill')}"
+				th:errors="*{playersAbility.skill}">Skill error</span>
+			<br/>
+			
+			<label for="skillOnGrass">SkillOnGrass(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnGrass}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.skillOnGrass')}"
+				th:errors="*{playersAbility.skillOnGrass}">SkillOnGrass error</span>
+			<br/>
+			
+			<label for="skillOnHard">SkillOnHard(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnHard}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.skillOnHard')}"
+				th:errors="*{playersAbility.skillOnHard}">SkillOnHard error</span>
+			<br/>
+			
+			<label for="skillOnClay">SkillOnClay(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnClay}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.skillOnClay')}"
+				th:errors="*{playersAbility.skillOnClay}">SkillOnClay error</span>
+			<br/>
+			
+			<label for="skillIndoor">SkillIndoor(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillIndoor}" placeholder=20/>
+			<span class="validationError"
+				th:if="${#fields.hasErrors('playersAbility.skillIndoor')}"
+				th:errors="*{playersAbility.skillIndoor}">SkillIndoor error</span>
+			<br/>
 			<input type="submit" value="Submit player"/>
 		</form>
 		
