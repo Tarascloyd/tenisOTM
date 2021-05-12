@@ -89,7 +89,7 @@ public class PlayerController {
 	@GetMapping("/search")
 	public String search(@RequestParam("name") String theName, Model theModel) {
 		
-		// check name, if empty then just give list of all employees
+		// check name, if empty then just give list of all players
 
 		if (theName.trim().isEmpty()) {
 			return "redirect:/players/list";
