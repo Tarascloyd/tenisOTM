@@ -18,12 +18,12 @@ public class Player {
 	private int id;
 	
 	@NotNull
-	@Size(min=3, message="Name must be at least 5 characters long")
+	@Size(min=2, message="Name must be at least 2 characters long")
 	private String name;
 	
 	@NotNull
 	@Min(value = 15, message="Invalid age")
-	@Max(value = 39, message="Invalid age")
+	@Max(value = 40, message="Invalid age")
 	private int age;
 	
 	

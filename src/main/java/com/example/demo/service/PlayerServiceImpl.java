@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	public List<Player> findAll() {
-		return (List<Player>) playerRepository.findAll();
+		return playerRepository.findAll();
 	}
 
 	@Override
@@ -58,6 +59,13 @@ public class PlayerServiceImpl implements PlayerService {
 		
 		return playerRepository.
 				findByNameContainsAllIgnoreCase(theName);	
+	}
+
+	@Override
+	public List<Player> findAllSortedByLevel() {
+		
+		return playerRepository.findAll().stream().sorted((p1, p2) 
+				-> p2.getPlayersAbility().getLevel() - p1.getPlayersAbility().getLevel()).collect(Collectors.toList());
 	}
 
 }

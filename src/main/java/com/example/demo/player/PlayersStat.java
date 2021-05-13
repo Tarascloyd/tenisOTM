@@ -17,7 +17,7 @@ public class PlayersStat {
 	private int totalLoses = 0;
 	private int totalTitles = 0;
 	private float ELORating = 1000;
-	private float maxELO = 0;
+	private float maxELO = 1000;
 	private int seeding = 0;
 	
 	

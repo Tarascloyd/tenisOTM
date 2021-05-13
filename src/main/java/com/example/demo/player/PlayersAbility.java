@@ -1,5 +1,9 @@
 package com.example.demo.player;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -57,6 +61,40 @@ public class PlayersAbility {
 	
 	public int getLevel() {
 		return (power + speed + skill + (skillOnGrass + skillOnHard + skillOnClay + skillIndoor)/4)/4;
+	}
+	
+	public int getLevel(int court) {
+		int thisSkill = 0;
+		switch (court) {
+			case 0: thisSkill = skillOnGrass;
+				break;
+			case 1: thisSkill = skillOnHard;
+				break;
+			case 2: thisSkill = skillOnClay;
+				break;
+			case 3: thisSkill = skillIndoor;
+				break;
+		}
+		return (power + speed + skill + thisSkill)/4;
+	}
+	
+	public String getBestTwo() {
+		StringBuilder result = new StringBuilder("");
+		List<Integer> bestTwo= List.of(skillOnGrass, skillOnHard, skillOnClay, skillIndoor).stream()
+			.sorted(Collections.reverseOrder()).limit(2)
+			.collect(Collectors.toList());
+		for(int n : bestTwo) {
+			if (n == skillOnGrass && !"G".equals(result.toString())) {
+				result.append("G");
+			} else if (n == skillOnHard && !"H".equals(result.toString())) {
+				result.append("H");
+			} else if (n == skillOnClay && !"C".equals(result.toString())) {
+				result.append("C");
+			} else if (n == skillIndoor && !"I".equals(result.toString())) {
+				result.append("I");
+			} 
+		}
+		return result.toString();
 	}
 
 	public int getId() {
