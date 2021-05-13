@@ -18,6 +18,7 @@ import com.example.demo.player.PlayersAbility;
 import com.example.demo.player.PlayersStat;
 import com.example.demo.service.PlayerService;
 import com.example.demo.service.PlayersAbilityService;
+import com.example.demo.service.PlayersStatService;
 
 @Controller
 @RequestMapping("/players")
@@ -25,11 +26,15 @@ public class PlayerController {
 	
 	private PlayerService playerService;
 	private PlayersAbilityService playersAbilityService;
+	private PlayersStatService playersStatService;
 	
-		
-	public PlayerController(PlayerService playerService, PlayersAbilityService playersAbilityService) {
+	
+	
+	public PlayerController(PlayerService playerService, PlayersAbilityService playersAbilityService,
+			PlayersStatService playersStatService) {
 		this.playerService = playerService;
 		this.playersAbilityService = playersAbilityService;
+		this.playersStatService = playersStatService;
 	}
 
 	@GetMapping("/list")
@@ -77,8 +82,8 @@ public class PlayerController {
 		}
 		else {		
 			// save the player
-			System.out.println(thePlayer.getPlayersAbility().getPower());
 			playersAbilityService.save(thePlayer.getPlayersAbility());
+			playersStatService.save(thePlayer.getPlayersStat());
 			playerService.save(thePlayer);
 			
 			// use a redirect to prevent duplicate submissions

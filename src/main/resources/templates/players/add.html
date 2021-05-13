@@ -21,6 +21,8 @@
 			</div>
 			<h3>Add new player with ...</h3>
 			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{playersAbility.id}" />
+			<input type="hidden" th:field="*{playersStat.id}" />
 			
 			<label for="name">Name: </label>
 			<input type="text" th:field="*{name}" placeholder="Name"/>
@@ -30,56 +32,56 @@
 			<br/>
 			
 			<label for="age">Age: </label>
-			<input type="number" th:field="*{age}" placeholder=20/>
+			<input type="number" th:field="*{age}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('age')}"
 				th:errors="*{age}">Age error</span>
 			<br/>
 			
-			<label for="power">Power(10-99): </label>
-			<input type="number" th:field="*{playersAbility.power}" placeholder=20/>
+			<label for="playersAbility.power">Power(10-99): </label>
+			<input type="number" th:field="*{playersAbility.power}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.power')}"
 				th:errors="*{playersAbility.power}">Power error</span>
 			<br/>
 			
-			<label for="speed">Speed(10-99): </label>
-			<input type="number" th:field="*{playersAbility.speed}" placeholder=20/>
+			<label for="playersAbility.speed">Speed(10-99): </label>
+			<input type="number" th:field="*{playersAbility.speed}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.speed')}"
 				th:errors="*{playersAbility.speed}">Speed error</span>
 			<br/>
 			
-			<label for="skill">Skill(10-99): </label>
-			<input type="number" th:field="*{playersAbility.skill}" placeholder=20/>
+			<label for="playersAbility.skill">Skill(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skill}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.skill')}"
 				th:errors="*{playersAbility.skill}">Skill error</span>
 			<br/>
 			
-			<label for="skillOnGrass">SkillOnGrass(10-99): </label>
-			<input type="number" th:field="*{playersAbility.skillOnGrass}" placeholder=20/>
+			<label for="playersAbility.skillOnGrass">SkillOnGrass(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnGrass}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.skillOnGrass')}"
 				th:errors="*{playersAbility.skillOnGrass}">SkillOnGrass error</span>
 			<br/>
 			
-			<label for="skillOnHard">SkillOnHard(10-99): </label>
-			<input type="number" th:field="*{playersAbility.skillOnHard}" placeholder=20/>
+			<label for="playersAbility.skillOnHard">SkillOnHard(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnHard}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.skillOnHard')}"
 				th:errors="*{playersAbility.skillOnHard}">SkillOnHard error</span>
 			<br/>
 			
-			<label for="skillOnClay">SkillOnClay(10-99): </label>
-			<input type="number" th:field="*{playersAbility.skillOnClay}" placeholder=20/>
+			<label for="playersAbility.skillOnClay">SkillOnClay(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillOnClay}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.skillOnClay')}"
 				th:errors="*{playersAbility.skillOnClay}">SkillOnClay error</span>
 			<br/>
 			
-			<label for="skillIndoor">SkillIndoor(10-99): </label>
-			<input type="number" th:field="*{playersAbility.skillIndoor}" placeholder=20/>
+			<label for="playersAbility.skillIndoor">SkillIndoor(10-99): </label>
+			<input type="number" th:field="*{playersAbility.skillIndoor}"/>
 			<span class="validationError"
 				th:if="${#fields.hasErrors('playersAbility.skillIndoor')}"
 				th:errors="*{playersAbility.skillIndoor}">SkillIndoor error</span>

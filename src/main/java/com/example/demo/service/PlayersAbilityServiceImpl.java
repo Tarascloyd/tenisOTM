@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.data.PlayerAbilityRepository;
+import com.example.demo.DAO.PlayerAbilityRepository;
 import com.example.demo.player.PlayersAbility;
 
 @Service

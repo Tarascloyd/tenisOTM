@@ -58,53 +58,69 @@ public class PlayersAbility {
 	public int getLevel() {
 		return (power + speed + skill + (skillOnGrass + skillOnHard + skillOnClay + skillIndoor)/4)/4;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getPower() {
 		return power;
 	}
-	public void setPower() {
-		this.power++;
+
+	public void setPower(int power) {
+		this.power = power;
 	}
+
 	public int getSpeed() {
 		return speed;
 	}
-	public void setSpeed() {
-		this.speed++;
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
+
 	public int getSkill() {
 		return skill;
 	}
-	public void setSkill() {
-		this.skill++;
+
+	public void setSkill(int skill) {
+		this.skill = skill;
 	}
+
 	public int getSkillOnGrass() {
 		return skillOnGrass;
 	}
-	public void setSkillOnGrass() {
-		this.skillOnGrass++;
+
+	public void setSkillOnGrass(int skillOnGrass) {
+		this.skillOnGrass = skillOnGrass;
 	}
+
 	public int getSkillOnHard() {
 		return skillOnHard;
 	}
-	public void setSkillOnHard() {
-		this.skillOnHard++;
+
+	public void setSkillOnHard(int skillOnHard) {
+		this.skillOnHard = skillOnHard;
 	}
+
 	public int getSkillOnClay() {
 		return skillOnClay;
 	}
-	public void setSkillOnClay() {
-		this.skillOnClay++;
+
+	public void setSkillOnClay(int skillOnClay) {
+		this.skillOnClay = skillOnClay;
 	}
+
 	public int getSkillIndoor() {
 		return skillIndoor;
 	}
-	public void setSkillIndoor() {
-		this.skillIndoor++;
+
+	public void setSkillIndoor(int skillIndoor) {
+		this.skillIndoor = skillIndoor;
 	}
+	
 }

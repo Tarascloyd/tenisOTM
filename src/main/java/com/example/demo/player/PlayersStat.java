@@ -26,6 +26,16 @@ public class PlayersStat {
 	}
 
 
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public int getPoints() {
 		return points;
 	}
@@ -94,6 +104,9 @@ public class PlayersStat {
 	public void setSeeding(int seeding) {
 		this.seeding = seeding;
 	}
+
+	
+	
 	
 	
 }

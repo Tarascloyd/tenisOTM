@@ -45,6 +45,7 @@
 				<th>Name</th>
 				<th>Age</th>
 				<th>Level</th>
+				<th>ELO</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -55,7 +56,7 @@
 				<td th:text="${tempPlayer.name}" />	
 				<td th:text="${tempPlayer.age}" />	
 				<td th:text="${tempPlayer.playersAbility.getLevel()}" />	
-				
+				<td th:text="${tempPlayer.playersStat.ELORating}" />
 				<td>
 					<!-- Add "update" button/link -->
 					<a th:href="@{/players/update(playerId=${tempPlayer.id})}"

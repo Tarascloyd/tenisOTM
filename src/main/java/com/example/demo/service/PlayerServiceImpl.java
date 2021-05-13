@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.data.PlayerRepository;
+import com.example.demo.DAO.PlayerRepository;
 import com.example.demo.player.Player;
 
 @Service
