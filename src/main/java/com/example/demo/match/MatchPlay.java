@@ -2,8 +2,11 @@ package com.example.demo.match;
 
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.player.Player;
 
+@Service
 public class MatchPlay {
 	private Match match;
 	private Player play1;
@@ -13,6 +16,16 @@ public class MatchPlay {
 		 return 1.0f * 1.0f / (1 + 1.0f * (float)(Math.pow(10, 1.0f * (rating1 - rating2) / 400))); 
 	 } 
 
+	 public static int[] getRandomPlayers(int size) {
+		 int[] pair = new int[2];
+		 Random r=new Random();
+		 pair[0] = r.nextInt(size);
+		 do {
+			 pair[1] = r.nextInt(size);
+		 } while (pair[1] == pair[0]);
+		 return pair;
+	 }
+	 
 	 public Player startMatch(Match match) {
 		 this.match = match;
 		 play1 = match.getPlay1();
@@ -54,7 +67,8 @@ public class MatchPlay {
 		 do {
 			 score = score + set(ver);
 		 } while (match.getP1()<2 && match.getP2()<2);
-		 System.out.println(match.getP1() + " - " + match.getP2() + score.substring(0, score.length()-2)+")");
+		 match.setResult(match.getP1() + " - " + match.getP2() + score.substring(0, score.length()-2)+")");
+		 System.out.println(match.getResult());
 	 }
 
 	 private String set(double probThisMatch) {

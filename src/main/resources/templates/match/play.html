@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<title>Live Match Center</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Live Match Center</h3>
+	<a th:href="@{/players/list}">Back to Players</a>
+	<hr>
+	
+	<h3>Todays match</h3>
+	<span th:text="${match.play1.name}"></span>
+	<span> vs </span>
+	<span th:text="${match.play2.name}"></span>
+	
+	<hr>
+	<span th:text="${match.result}"></span>
+	<hr>
+	<a th:href="@{/match/play}">Next Match</a>
+</div>
+	
+</body>
+</html>
