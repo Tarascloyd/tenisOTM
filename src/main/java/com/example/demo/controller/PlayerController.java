@@ -41,7 +41,7 @@ public class PlayerController {
 	public String listPlayers(Model theModel) {
 		
 		// get players from db
-		List<Player> thePlayers = playerService.findAllSortedByLevel();
+		List<Player> thePlayers = playerService.findAllSortedByELO();
 		
 		// add to the spring model
 		theModel.addAttribute("players", thePlayers);

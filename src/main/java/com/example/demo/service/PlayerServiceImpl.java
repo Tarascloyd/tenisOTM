@@ -62,10 +62,10 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public List<Player> findAllSortedByLevel() {
+	public List<Player> findAllSortedByELO() {
 		
 		return playerRepository.findAll().stream().sorted((p1, p2) 
-				-> p2.getPlayersAbility().getLevel() - p1.getPlayersAbility().getLevel()).collect(Collectors.toList());
+				-> (int)((p2.getPlayersStat().getELORating() - p1.getPlayersStat().getELORating())*1000)).collect(Collectors.toList());
 	}
 
 }

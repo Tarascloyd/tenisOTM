@@ -1,47 +1,86 @@
 package com.example.demo.match;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Random;
-
-import org.springframework.stereotype.Service;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.example.demo.player.Player;
 
-@Service
 public class MatchPlay {
-	private Match match;
-	private Player play1;
-	private Player play2;
+	private static Match match;
+	private static Player play1;
+	private static Player play2;
 	
-	 public static float Probability(float rating1, float rating2) { 
+	private static float Probability(float rating1, float rating2) { 
 		 return 1.0f * 1.0f / (1 + 1.0f * (float)(Math.pow(10, 1.0f * (rating1 - rating2) / 400))); 
 	 } 
 
-	 public static int[] getRandomPlayers(int size) {
-		 int[] pair = new int[2];
+	 private static Set<Integer> getRandomNumbers(int size) {
+		 Set<Integer> set = new LinkedHashSet<>();
 		 Random r=new Random();
-		 pair[0] = r.nextInt(size);
-		 do {
-			 pair[1] = r.nextInt(size);
-		 } while (pair[1] == pair[0]);
-		 return pair;
+		 int numberOfMatches = 6;
+		 if (numberOfMatches % 2 == 1) numberOfMatches++;
+		 while (set.size() < numberOfMatches) {
+			 set.add(r.nextInt(size));
+		 }
+		 return set;
+	 }
+	 public static List<Match> playRandomMatches(List<Player> list){
+		 setRunk(list);
+		 List<Match> theMatches = new ArrayList<>();
+		 Set<Integer> set = getRandomNumbers(list.size());
+		 Player playerOne = null;
+		 int count = 0;
+		 for (Integer n : set) {
+			 if (count % 2 == 0) {
+				 playerOne = list.get(n);
+			 } else {
+				 createMatch(playerOne, list.get(n));
+				 startMatch();
+				 theMatches.add(match);
+			 }
+			 count++;
+		 }
+		 
+		 return theMatches;
 	 }
 	 
-	 public Player startMatch(Match match) {
-		 this.match = match;
-		 play1 = match.getPlay1();
-		 play2 = match.getPlay2();
+	 private static void setRunk(List<Player> list) {
+		 List<Player> list2 = list.stream()
+		 	.sorted((p1, p2) -> (int)((p2.getPlayersStat().getELORating() - p1.getPlayersStat().getELORating())*1000))
+		 	.collect(Collectors.toList());
+		 list2.forEach(p -> p.getPlayersStat().setSeeding(list2.indexOf(p)+1));
+	 }
+	 private static void createMatch(Player p1, Player p2) {
+		match = new Match();
+		match.setCourt((int)(Math.random()*4));
+		match.setPlay1(p1);
+		match.setPlay2(p2);
+		play1 = p1;
+		play2 = p2;
+		match.setP1(0);
+		match.setP2(0);
+	 }
+	 private static Player startMatch() {
 		 playMatch();
 		 return calculateResult();
 	 }
-	 private Player calculateResult() {
+	 private static Player calculateResult() {
 		 float rat1 = play1.getPlayersStat().getELORating();
 		 float rat2 = play2.getPlayersStat().getELORating();
-		 if (match.getP1()> match.getP1()) { 
+		 System.out.println(rat1 + " " + rat2);
+		 if (match.getP1() > match.getP2()) { 
 			 float prob = Probability(rat1,rat2);
 			 play1.getPlayersStat().setTotalWins(play1.getPlayersStat().getTotalWins() + 1);
 			 play2.getPlayersStat().setTotalLoses(play2.getPlayersStat().getTotalLoses() + 1);
 			 play1.getPlayersStat().setELORating(play1.getPlayersStat().getELORating() + prob*40);
 			 play2.getPlayersStat().setELORating(play2.getPlayersStat().getELORating() + prob*-40);
+			 System.out.println(prob);
+			 System.out.println(match.getResult() + "  Win1");
+			 System.out.println(play1.getPlayersStat().getELORating() + " " + play2.getPlayersStat().getELORating());
 			 return play1;
 		  } else {
 			 float prob = Probability(rat2,rat1);
@@ -49,10 +88,13 @@ public class MatchPlay {
 			 play1.getPlayersStat().setTotalLoses(play1.getPlayersStat().getTotalLoses() + 1);
 			 play2.getPlayersStat().setELORating(play2.getPlayersStat().getELORating() + prob*40);
 			 play1.getPlayersStat().setELORating(play1.getPlayersStat().getELORating() + prob*-40);
+			 System.out.println(prob);
+			 System.out.println(match.getResult() + "  Win2");
+			 System.out.println(play1.getPlayersStat().getELORating() + " " + play2.getPlayersStat().getELORating());
 			 return play2;
 		  }
 	 }
-	 private void playMatch() {
+	 private static  void playMatch() {
 		 int lvl1=play1.getPlayersAbility().getLevel(match.getCourt());
 		 int lvl2=play2.getPlayersAbility().getLevel(match.getCourt());
 		 double ver;
@@ -68,10 +110,9 @@ public class MatchPlay {
 			 score = score + set(ver);
 		 } while (match.getP1()<2 && match.getP2()<2);
 		 match.setResult(match.getP1() + " - " + match.getP2() + score.substring(0, score.length()-2)+")");
-		 System.out.println(match.getResult());
 	 }
 
-	 private String set(double probThisMatch) {
+	 private static String set(double probThisMatch) {
 		 int g1=0;
 		 int g2=0;
 		 double probThisGame;
