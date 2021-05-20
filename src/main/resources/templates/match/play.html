@@ -20,6 +20,7 @@
 	
 	<h3>Todays matches</h3>
 	<div th:each="match : ${matches}">
+		<span th:text="${match.court.toString()} + ' - '"></span>
 		<span th:text="${match.play1.name} + '(' + ${match.play1.playersStat.seeding} + ')'"></span>
 		<span> vs </span>
 		<span th:text="${match.play2.name} + '(' + ${match.play2.playersStat.seeding} + ')'"></span>

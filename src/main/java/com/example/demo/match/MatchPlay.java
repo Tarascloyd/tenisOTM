@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.example.demo.match.Match.Court;
 import com.example.demo.player.Player;
 
 public class MatchPlay {
@@ -21,7 +22,7 @@ public class MatchPlay {
 	 private static Set<Integer> getRandomNumbers(int size) {
 		 Set<Integer> set = new LinkedHashSet<>();
 		 Random r=new Random();
-		 int numberOfMatches = 6;
+		 int numberOfMatches = size / 10 * 4;
 		 if (numberOfMatches % 2 == 1) numberOfMatches++;
 		 while (set.size() < numberOfMatches) {
 			 set.add(r.nextInt(size));
@@ -54,9 +55,18 @@ public class MatchPlay {
 		 	.collect(Collectors.toList());
 		 list2.forEach(p -> p.getPlayersStat().setSeeding(list2.indexOf(p)+1));
 	 }
+	 private static Court createCourt(int number) {
+		 switch (number) {
+		 	case 0: return Court.GRASS;
+		 	case 1: return Court.HARD;
+		 	case 2: return Court.CLAY;
+		 	case 3: return Court.INDOOR;
+		 }
+		 return Court.HARD;
+	 }
 	 private static void createMatch(Player p1, Player p2) {
 		match = new Match();
-		match.setCourt((int)(Math.random()*4));
+		match.setCourt(createCourt((int)(Math.random()*4)));
 		match.setPlay1(p1);
 		match.setPlay2(p2);
 		play1 = p1;
@@ -78,9 +88,6 @@ public class MatchPlay {
 			 play2.getPlayersStat().setTotalLoses(play2.getPlayersStat().getTotalLoses() + 1);
 			 play1.getPlayersStat().setELORating(play1.getPlayersStat().getELORating() + prob*40);
 			 play2.getPlayersStat().setELORating(play2.getPlayersStat().getELORating() + prob*-40);
-			 System.out.println(prob);
-			 System.out.println(match.getResult() + "  Win1");
-			 System.out.println(play1.getPlayersStat().getELORating() + " " + play2.getPlayersStat().getELORating());
 			 return play1;
 		  } else {
 			 float prob = Probability(rat2,rat1);
@@ -88,15 +95,12 @@ public class MatchPlay {
 			 play1.getPlayersStat().setTotalLoses(play1.getPlayersStat().getTotalLoses() + 1);
 			 play2.getPlayersStat().setELORating(play2.getPlayersStat().getELORating() + prob*40);
 			 play1.getPlayersStat().setELORating(play1.getPlayersStat().getELORating() + prob*-40);
-			 System.out.println(prob);
-			 System.out.println(match.getResult() + "  Win2");
-			 System.out.println(play1.getPlayersStat().getELORating() + " " + play2.getPlayersStat().getELORating());
 			 return play2;
 		  }
 	 }
 	 private static  void playMatch() {
-		 int lvl1=play1.getPlayersAbility().getLevel(match.getCourt());
-		 int lvl2=play2.getPlayersAbility().getLevel(match.getCourt());
+		 int lvl1=play1.getPlayersAbility().getLevel(match.getCourt().ordinal());
+		 int lvl2=play2.getPlayersAbility().getLevel(match.getCourt().ordinal());
 		 double ver;
 		 String score="(";
 		 if (lvl1 > lvl2) {

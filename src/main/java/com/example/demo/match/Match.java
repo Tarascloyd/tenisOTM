@@ -14,7 +14,7 @@ public class Match {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private int court;
+	private Court court;
 	
 	@ManyToOne
 	private Player play1;
@@ -26,16 +26,20 @@ public class Match {
 	private int p2; 
 	private String result;
 	
+	public static enum Court {
+		GRASS, HARD, CLAY, INDOOR;
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCourt() {
+	public Court getCourt() {
 		return court;
 	}
-	public void setCourt(int court) {
+	public void setCourt(Court court) {
 		this.court = court;
 	}
 	public Player getPlay1() {

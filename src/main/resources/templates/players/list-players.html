@@ -48,6 +48,9 @@
 				<th>Age</th>
 				<th>Level</th>
 				<th>ELO</th>
+				<th>Wins</th>
+				<th>Loses</th>
+				<th>titles</th>
 				<th>Best on</th>
 				<th>Action</th>
 			</tr>
@@ -61,6 +64,9 @@
 				<td th:text="${tempPlayer.age}" />	
 				<td th:text="${tempPlayer.playersAbility.getLevel()}" />	
 				<td th:text="${tempPlayer.playersStat.ELORating}" />
+				<td th:text="${tempPlayer.playersStat.totalWins}" />
+				<td th:text="${tempPlayer.playersStat.totalLoses}" />
+				<td th:text="${tempPlayer.playersStat.totalTitles}" />
 				<td th:text="${tempPlayer.playersAbility.getBestTwo()}" />	
 				<td>
 					<!-- Add "update" button/link -->
