@@ -14,6 +14,7 @@ public class Match {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private Court court;
 	
 	@ManyToOne
