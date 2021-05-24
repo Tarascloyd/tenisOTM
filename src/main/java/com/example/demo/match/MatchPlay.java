@@ -19,17 +19,8 @@ public class MatchPlay {
 		 return 1.0f * 1.0f / (1 + 1.0f * (float)(Math.pow(10, 1.0f * (rating1 - rating2) / 400))); 
 	 } 
 
-	 private static Set<Integer> getRandomNumbers(int size) {
-		 Set<Integer> set = new LinkedHashSet<>();
-		 Random r=new Random();
-		 int numberOfMatches = size / 10 * 4;
-		 if (numberOfMatches % 2 == 1) numberOfMatches++;
-		 while (set.size() < numberOfMatches) {
-			 set.add(r.nextInt(size));
-		 }
-		 return set;
-	 }
-	 public static List<Match> playRandomMatches(List<Player> list){
+	//Play random matches for list of players 
+	public static List<Match> playRandomMatches(List<Player> list){
 		 setRunk(list);
 		 List<Match> theMatches = new ArrayList<>();
 		 Set<Integer> set = getRandomNumbers(list.size());
@@ -48,6 +39,25 @@ public class MatchPlay {
 		 
 		 return theMatches;
 	 }
+	
+	//Play match for two concrete players
+	public static Match playOneMatch(Player player1, Player player2, Court court){
+		createMatch(player1, player2, court);
+		startMatch();
+		return match;
+	}
+	
+	private static Set<Integer> getRandomNumbers(int size) {
+		 Set<Integer> set = new LinkedHashSet<>();
+		 Random r=new Random();
+		 int numberOfMatches = size / 10 * 4;
+		 if (numberOfMatches % 2 == 1) numberOfMatches++;
+		 while (set.size() < numberOfMatches) {
+			 set.add(r.nextInt(size));
+		 }
+		 return set;
+	 }
+	 
 	 
 	 private static void setRunk(List<Player> list) {
 		 List<Player> list2 = list.stream()
@@ -65,15 +75,17 @@ public class MatchPlay {
 		 return Court.HARD;
 	 }
 	 private static void createMatch(Player p1, Player p2) {
-		match = new Match();
-		match.setCourt(createCourt((int)(Math.random()*4)));
-		match.setPlay1(p1);
-		match.setPlay2(p2);
-		play1 = p1;
-		play2 = p2;
-		match.setP1(0);
-		match.setP2(0);
+		 Court theCourt = createCourt((int)(Math.random()*4));
+		 createMatch(p1, p2, theCourt);
 	 }
+	 private static void createMatch(Player p1, Player p2, Court court) {
+			match = new Match();
+			match.setCourt(court);
+			match.setPlay1(p1);
+			match.setPlay2(p2);
+			play1 = p1;
+			play2 = p2;
+		 }
 	 private static Player startMatch() {
 		 playMatch();
 		 return calculateResult();

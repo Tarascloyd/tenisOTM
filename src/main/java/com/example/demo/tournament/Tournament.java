@@ -1,12 +1,15 @@
 package com.example.demo.tournament;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+import com.example.demo.match.Match;
 import com.example.demo.match.Match.Court;
 import com.example.demo.player.Player;
 
@@ -25,6 +28,9 @@ public class Tournament {
 	
 	@ManyToMany(targetEntity=Player.class)
 	private List<Player> players;
+	
+	@OneToMany(mappedBy="tournament")
+	private List<Match> matches = new ArrayList<>();
 	
 	public static enum Type {
 		OTM125, OTM250, OTM500, MAJOR, GRAND;
@@ -76,6 +82,14 @@ public class Tournament {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public List<Match> getMatches() {
+		return matches;
+	}
+
+	public void setMatches(List<Match> matches) {
+		this.matches = matches;
 	}
 	
 	

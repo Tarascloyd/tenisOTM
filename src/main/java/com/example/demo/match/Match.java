@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.example.demo.player.Player;
+import com.example.demo.tournament.Tournament;
 
 @Entity
 public class Match {
@@ -22,6 +23,11 @@ public class Match {
 	
 	@ManyToOne
 	private Player play2;
+	
+	@ManyToOne
+	private Tournament tournament;
+	
+	private int winner;
 	
 	private int p1;
 	private int p2; 
@@ -72,6 +78,12 @@ public class Match {
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	public int getWinner() {
+		return winner;
+	}
+	public void setWinner(int winner) {
+		this.winner = winner;
 	}
 	
 	

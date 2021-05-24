@@ -18,7 +18,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		gen.generate(50);
+		gen.generate(32);
 		return "home";
 	}
 }
