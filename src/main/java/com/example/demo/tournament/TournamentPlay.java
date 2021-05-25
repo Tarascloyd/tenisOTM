@@ -15,10 +15,11 @@ public class TournamentPlay {
 	private static Tournament tournament;
 	
 	
-	public static void play(List<Player> list) {
+	public static Tournament play(List<Player> list) {
 		List<Player> thePlayers = setSeeding(list);
 		createTournament(thePlayers);
 		start();
+		return tournament;
 	}
 	private static void createTournament(List<Player> list) {
 		tournament = new Tournament();
@@ -56,7 +57,7 @@ public class TournamentPlay {
 	    	tournament.setCurrentstage(tournament.getCurrentstage() + 1);
 	    }
 	    Player winner = tournament.getPlayers().get(0);
-	    System.out.println("Winner of this tournamet " + tournament.getType() + " is " + winner.getName());
+	    System.out.println("Winner of this tournament " + tournament.getType() + " is " + winner.getName());
 	    winner.getPlayersStat().setTotalTitles(winner.getPlayersStat().getTotalTitles() + 1);
 	}
 	

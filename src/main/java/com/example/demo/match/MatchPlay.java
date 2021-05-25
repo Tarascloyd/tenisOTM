@@ -43,7 +43,8 @@ public class MatchPlay {
 	//Play match for two concrete players
 	public static Match playOneMatch(Player player1, Player player2, Court court){
 		createMatch(player1, player2, court);
-		startMatch();
+		var winner = startMatch();
+		match.setWinner(match.getPlay1() == winner ? 1 : 2);
 		return match;
 	}
 	

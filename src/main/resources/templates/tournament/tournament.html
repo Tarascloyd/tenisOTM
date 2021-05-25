@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<title>Live Match Center</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Live Match Center</h3>
+	<a th:href="@{/players/list}">Back to Players</a>
+	<hr>
+	
+	<h3 th:text="'Tournament on ' + ${tournament.getCourt()} + ' ' + ${tournament.getType()}
+	    	+ ' (' + ${tournament.getTotalplayes()} + ') is starting'">Tournament</h3>
+	<div th:each="match : ${tournament.getMatches}"
+		 th:style="${matchStat.odd}? 'font-weight: bold;'" >
+		
+		<div th:if="${(matchStat.size - matchStat.count + 2) == 1 || (matchStat.size - matchStat.count + 2) == 2 ||
+			(matchStat.size - matchStat.count + 2) == 4 || (matchStat.size - matchStat.count + 2) == 8 ||
+			(matchStat.size - matchStat.count + 2) == 16 || (matchStat.size - matchStat.count + 2) == 32 ||
+			(matchStat.size - matchStat.count + 2) == 64 || (matchStat.size - matchStat.count + 2) == 128}">
+			<hr>
+			<h4 th:text="'Stage: 1/' + ${(matchStat.size - matchStat.count + 2) / 2}">Stage:</h4>
+		</div>
+		<span th:text="${match.play1.name} + '(' + ${match.play1.playersStat.seeding} + ')'"></span>
+		<span> vs </span>
+		<span th:text="${match.play2.name} + '(' + ${match.play2.playersStat.seeding} + ')'"></span>
+		<span th:text="${match.result}"></span>
+		
+	</div>
+	<h3 th:text="'Winner of this tournament ' + ${tournament.getType()} + ' is ' + ${tournament.getPlayers().get(0).getName()}">Tournament</h3>
+	<a th:href="@{/tournament/play}">Next Tournament</a>
+</div>
+	
+</body>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.player.Player;
 import com.example.demo.service.PlayerService;
+import com.example.demo.tournament.Tournament;
 import com.example.demo.tournament.TournamentPlay;
 
 @Controller
@@ -29,12 +30,18 @@ public class TournamentController {
 		// get players from db
 		List<Player> thePlayers = playerService.findAll();
 		
-		TournamentPlay.play(thePlayers);
+		// play Tournament
+		Tournament theTournament = TournamentPlay.play(thePlayers);
+		
+		// save players after Tournament
 		thePlayers.stream().forEach(p -> {
 			playerService.save(p);
 		});
 		
-		return "redirect:/players/list";
+		// add to the spring model
+		theModel.addAttribute("tournament", theTournament); 
+		
+		return "tournament/tournament";
 	}
 	
 }
