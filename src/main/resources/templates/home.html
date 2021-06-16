@@ -6,7 +6,10 @@ xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
 <h1>Welcome to...</h1>
-<br></br>
-<a th:href="@{/players/list}" id="players">List all players</a><br/>
+<br>
+<a th:href="@{/players/list}" id="players">List all players</a>
+<form method="POST" th:action="@{/logout}">
+<input type="submit" value="Logout"/>
+</form>
 <img th:src="@{/images/logo.png}"/>
 </body>

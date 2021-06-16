@@ -7,13 +7,13 @@ public class RegistrationForm {
 	  private String username;
 	  private String password;
 	  private String fullname;
-	  private String street;
+	  private String country;
 	  private String city;
 	  
 	  public User toUser(PasswordEncoder passwordEncoder) {
 	    return new User(
 	        username, passwordEncoder.encode(password), 
-	        fullname, street, city);
+	        fullname, country, city);
 	  }
 
 	public String getUsername() {
@@ -40,12 +40,13 @@ public class RegistrationForm {
 		this.fullname = fullname;
 	}
 
-	public String getStreet() {
-		return street;
+	
+	public String getCountry() {
+		return country;
 	}
 
-	public void setStreet(String street) {
-		this.street = street;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getCity() {
